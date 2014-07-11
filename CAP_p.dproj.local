@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2014/03/15 19:01:37.189.pas,C:\Users\TWAKA\Documents\RAD Studio\Projects\Unit2.pas=D:\TeeKay\PAT 2014\Phase 3\Sample\CAP_u.pas</Transaction>
+    <Transaction>2014/03/15 19:01:37.189.dfm,C:\Users\TWAKA\Documents\RAD Studio\Projects\Unit2.dfm=D:\TeeKay\PAT 2014\Phase 3\Sample\CAP_u.dfm</Transaction>
+    <Transaction>2014/03/15 19:01:43.215.dproj,C:\Users\TWAKA\Documents\RAD Studio\Projects\Project1.dproj=D:\TeeKay\PAT 2014\Phase 3\Sample\CAP_p.dproj</Transaction>
+    <Transaction>2014/03/16 14:00:17.607.pas,D:\TeeKay\PAT 2014\Phase 3\Sample\Unit1.pas=D:\TeeKay\PAT 2014\Phase 3\Sample\SplashScreen_u.pas</Transaction>
+    <Transaction>2014/03/16 14:00:17.607.dfm,D:\TeeKay\PAT 2014\Phase 3\Sample\Unit1.dfm=D:\TeeKay\PAT 2014\Phase 3\Sample\SplashScreen_u.dfm</Transaction>
+    <Transaction>2014/06/17 20:53:16.861.pas,D:\TeeKay\PAT 2014\Phase 3\Sample\Unit1.pas=D:\TeeKay\PAT 2014\Phase 3\Sample\Database_u.pas</Transaction>
+    <Transaction>2014/06/17 20:56:01.052.pas,D:\TeeKay\PAT 2014\Phase 3\Sample\Unit1.pas=D:\TeeKay\PAT 2014\Phase 3\Sample\Database_u.pas</Transaction>
+    <Transaction>2014/06/17 20:56:01.052.dfm,D:\TeeKay\PAT 2014\Phase 3\Sample\Unit1.dfm=D:\TeeKay\PAT 2014\Phase 3\Sample\Database_u.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
