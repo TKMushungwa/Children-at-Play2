@@ -4,8 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, jpeg, ExtCtrls, ComCtrls, pngimage, StdCtrls,Buttons,Database_u,
-  GIFImg;
+  Dialogs, jpeg, ExtCtrls, ComCtrls, pngimage, StdCtrls,Buttons,
+  GIFImg, DB, ADODB;
 type
   TfrmMain = class(TForm)
     PageControl1: TPageControl;
@@ -44,6 +44,9 @@ type
     Memo1: TMemo;
     BitBtn1: TBitBtn;
     Memo2: TMemo;
+    conCaP: TADOConnection;
+    ADOTbls: TADOTable;
+    DataSource1: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure pnlDropMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -56,7 +59,7 @@ type
     lblUsername, lblUser, lblPassword: TLabel;
     edtUsername, edtPassword: TEdit;
     smbUsertype : TComboBox;
-    btnLogin1, btnRegister1: TSpeedbutton;
+    btnLogin1, btnRegister1: TSpeedButton;
     procedure LoginUser(Sender: TObject);
     procedure regUser(Sender: Tobject);
     var
@@ -121,7 +124,7 @@ begin
     left:= 75;
     width:= 200;
     caption:= 'Login';
-    OnClick:= LoginUser;
+    OnClick:= LoginUser; //Click to attempt login
     end;
 end;
 
@@ -194,7 +197,7 @@ begin
     left:= 75;
     width:= 200;
     caption:= 'Register';
-    OnClick := regUser;
+    OnClick := regUser; //Click to attempt register
     end;
 end;
 
@@ -222,46 +225,60 @@ end;
 
 procedure TfrmMain.LoginUser(Sender: TObject);
 var
- sUser,sPassword : string;
+ sUser,sPassword,sDBPassword : string;
 begin
+  //Input
   sUser:= edtUsername.Text;
-  {Database_u.DataModule1.ADOTbls.Filtered:= false;
-  DataModule1.ADOTbls.Filter:= 'UserID = '+QuotedStr(sUser);
-  DataModule1.ADOTbls.Filtered:= true;
-  DataModule1.ADOTbls.Open;
-  if DataModule1.ADOTbls.MaxRecords = 0 then
+  sPassword:= edtPassword.Text;
+  //Checking database to see if user exsists and validate
+  ADOTbls.Filtered:= false;
+  ADOTbls.Filter:= 'UserID = '+QuotedStr(sUser);
+  ADOTbls.Filtered:= true;
+  ADOTbls.Open;
+  sDBPassword:= VarToStr(ADOTbls.FieldByName('Password').Value);
+  if ADOTbls.RecordCount = 0 then //NO user
      begin
       ShowMessage('User does not exsist');
       edtUsername.Clear;
       edtPassword.Clear;
+      edtUsername.SetFocus;
      end
-   else
-     if DataModule1.ADOTbls.MaxRecords > 0 then
-       if NOT (DataModule1.ADOTbls.FieldByName('Password').Value = sPassword) then
+   else //User exsists, checking password
+     if (ADOTbls.RecordCount > 0) AND (NOT (sDBPassword = sPassword)) then
         begin
           ShowMessage('Password is incorrect');
           edtPassword.Clear;
         end
        else
-          ShowMessage('Login successful!');
-          bLogin:= true;}
+          begin
+           ShowMessage('Login successful!');
+           bLogin:= true;
+          end;
 
 end;
 procedure  TfrmMain.regUser(Sender: TObject);
   var
-    sUser : string;
+    sUser,sPassword,sUsertype : string;
   begin
     sUser := edtUsername.Text;
-    with Database_u.DataModule1.ADOTbls do
+    sPassword:= edtPassword.Text;
+    //sUsertype:=
+    with ADOTbls do
       begin
         Filter := sUser;
         Filtered := true;
-
-       // if MaxRecords > 0 then
-         // begin
-
-          //end;
-
+        Open;
+        if RecordCount > 0 then //If records exist grom the filter
+          begin
+           ShowMessage('Username already taken');
+           edtUsername.Clear;
+           edtPassword.Clear;
+          end
+        else
+          Insert;
+          FieldByName('UserID').Value:= sUser;
+          FieldByName('UserType').Value := sUserType;
+          FieldByName('Password').Value:= sPassword;
       end;
 
 

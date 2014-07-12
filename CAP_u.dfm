@@ -26,8 +26,8 @@ object frmMain: TfrmMain
     object WelcomePage: TTabSheet
       Caption = 'WelcomePage'
       object imgWelcome: TImage
-        Left = 5
-        Top = -4
+        Left = 7
+        Top = 20
         Width = 661
         Height = 381
         Picture.Data = {
@@ -7905,8 +7905,8 @@ object frmMain: TfrmMain
         Stretch = True
       end
       object btnRegister: TButton
-        Left = 30
-        Top = 184
+        Left = 94
+        Top = 164
         Width = 113
         Height = 41
         Caption = 'REGISTER'
@@ -7920,8 +7920,8 @@ object frmMain: TfrmMain
         OnClick = btnRegisterClick
       end
       object btnLogin: TButton
-        Left = 30
-        Top = 137
+        Left = 94
+        Top = 113
         Width = 113
         Height = 41
         Caption = 'LOGIN'
@@ -7938,6 +7938,10 @@ object frmMain: TfrmMain
     object Activites: TTabSheet
       Caption = 'Activites'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ActChurch: TImage
         Left = 407
         Top = 113
@@ -30072,6 +30076,10 @@ object frmMain: TfrmMain
     object Donations: TTabSheet
       Caption = 'Donations'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label1: TLabel
         Left = 124
         Top = 169
@@ -50909,6 +50917,10 @@ object frmMain: TfrmMain
     object Events: TTabSheet
       Caption = 'Events'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel3: TPanel
         Left = 72
         Top = 32
@@ -51041,5 +51053,30 @@ object frmMain: TfrmMain
     Caption = '>'
     TabOrder = 6
     OnClick = Button4Click
+  end
+  object conCaP: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\TeeKay\Children' +
+      '-at-Play2\C@P_Database.accdb;Mode=ReadWrite;Persist Security Inf' +
+      'o=False'
+    LoginPrompt = False
+    Mode = cmReadWrite
+    Provider = 'Microsoft.ACE.OLEDB.12.0'
+    Left = 312
+    Top = 176
+  end
+  object ADOTbls: TADOTable
+    Active = True
+    Connection = conCaP
+    CursorType = ctStatic
+    TableName = 'Login'
+    Left = 392
+    Top = 176
+  end
+  object DataSource1: TDataSource
+    DataSet = ADOTbls
+    Left = 456
+    Top = 176
   end
 end

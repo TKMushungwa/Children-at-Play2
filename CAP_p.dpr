@@ -4,8 +4,7 @@ uses
   Forms,
   windows,
   CAP_u in 'CAP_u.pas' {frmMain},
-  SplashScreen_u in 'SplashScreen_u.pas' {SplashScreen},
-  Database_u in 'Database_u.pas' {DataModule1: TDataModule};
+  SplashScreen_u in 'SplashScreen_u.pas' {SplashScreen};
 
 {$R *.res}
 

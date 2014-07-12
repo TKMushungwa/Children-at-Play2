@@ -49,10 +49,6 @@
 			<DCCReference Include="SplashScreen_u.pas">
 				<Form>SplashScreen</Form>
 			</DCCReference>
-			<DCCReference Include="Database_u.pas">
-				<Form>DataModule1</Form>
-				<DesignClass>TDataModule</DesignClass>
-			</DCCReference>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

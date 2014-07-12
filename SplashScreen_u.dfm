@@ -4,9 +4,9 @@ object SplashScreen: TSplashScreen
   BorderStyle = bsNone
   ClientHeight = 365
   ClientWidth = 659
-  Color = clRed
+  Color = clWhite
   TransparentColor = True
-  TransparentColorValue = clRed
+  TransparentColorValue = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
