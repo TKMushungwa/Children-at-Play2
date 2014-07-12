@@ -5,9 +5,10 @@ object DataModule1: TDataModule1
   object conCAP: TADOConnection
     Connected = True
     ConnectionString = 
-      'Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\TeeKay\PAT 2014' +
-      '\Phase 3\Sample\C@P_Database.accdb;Mode=ReadWrite;Persist Securi' +
-      'ty Info=False'
+      'Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Rowly\Doc' +
+      'uments\GitHub\Children-at-Play2\C@P_Database.accdb;Mode=ReadWrit' +
+      'e;Persist Security Info=False'
+    LoginPrompt = False
     Mode = cmReadWrite
     Provider = 'Microsoft.ACE.OLEDB.12.0'
     Left = 48

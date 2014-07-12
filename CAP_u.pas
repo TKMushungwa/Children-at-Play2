@@ -44,7 +44,6 @@ type
     Memo1: TMemo;
     BitBtn1: TBitBtn;
     Memo2: TMemo;
-    ComboBox1: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure pnlDropMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -55,9 +54,11 @@ type
     procedure btnLoginClick(Sender: TObject);
   private
     lblUsername, lblUser, lblPassword: TLabel;
-    edtUsername, edtUser, edtPassword: TEdit;
+    edtUsername, edtPassword: TEdit;
+    smbUsertype : TComboBox;
     btnLogin1, btnRegister1: TSpeedbutton;
     procedure LoginUser(Sender: TObject);
+    procedure regUser(Sender: Tobject);
     var
       bLogin : Boolean;
   public
@@ -137,8 +138,8 @@ begin
    lblPassword.Parent := WelcomePage;
    edtUsername := TEdit.Create(WelcomePage);
    edtUsername.parent := WelcomePage;
-   edtUser := TEdit.Create(WelcomePage);
-   edtUser.parent := WelcomePage;
+   smbUsertype := TComboBox.Create(WelcomePage);
+   smbUsertype.Parent := WelcomePage;
    edtPassword := TEdit.Create(WelcomePage);
    edtPassword.parent := WelcomePage;
    btnRegister1 := TSpeedbutton.Create(WelcomePage);
@@ -171,11 +172,14 @@ begin
     Top:= 100;
     left:= 150;
     end;
-   with edtUser do
+   with smbUsertype do
     begin
-     Visible:= true;
-    Top:= 150;
-    left:= 150;
+      Visible:= true;
+      items.Add('Donor');
+      items.Add('Stuff');
+      Top:= 150;
+      left:= 150;
+      width := 120;
     end;
    with edtPassword do
     begin
@@ -190,6 +194,7 @@ begin
     left:= 75;
     width:= 200;
     caption:= 'Register';
+    OnClick := regUser;
     end;
 end;
 
@@ -242,6 +247,26 @@ begin
           bLogin:= true;}
 
 end;
+procedure  TfrmMain.regUser(Sender: TObject);
+  var
+    sUser : string;
+  begin
+    sUser := edtUsername.Text;
+    with Database_u.DataModule1.ADOTbls do
+      begin
+        Filter := sUser;
+        Filtered := true;
+
+       // if MaxRecords > 0 then
+         // begin
+
+          //end;
+
+      end;
+
+
+end;
+
 
 procedure TfrmMain.pnlDropMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);

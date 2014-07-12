@@ -7934,22 +7934,10 @@ object frmMain: TfrmMain
         TabOrder = 0
         OnClick = btnLoginClick
       end
-      object ComboBox1: TComboBox
-        Left = 264
-        Top = 176
-        Width = 145
-        Height = 21
-        TabOrder = 2
-        Text = 'ComboBox1'
-      end
     end
     object Activites: TTabSheet
       Caption = 'Activites'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ActChurch: TImage
         Left = 407
         Top = 113
@@ -30084,10 +30072,6 @@ object frmMain: TfrmMain
     object Donations: TTabSheet
       Caption = 'Donations'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label1: TLabel
         Left = 124
         Top = 169
@@ -50925,10 +50909,6 @@ object frmMain: TfrmMain
     object Events: TTabSheet
       Caption = 'Events'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel3: TPanel
         Left = 72
         Top = 32
@@ -50991,8 +50971,8 @@ object frmMain: TfrmMain
     end
   end
   object pnlDrop: TPanel
-    Left = -7
-    Top = 0
+    Left = -6
+    Top = 2
     Width = 666
     Height = 30
     BevelOuter = bvNone
