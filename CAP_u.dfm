@@ -21,7 +21,7 @@ object frmMain: TfrmMain
     Top = -20
     Width = 675
     Height = 400
-    ActivePage = WelcomePage
+    ActivePage = Activites
     TabOrder = 0
     object WelcomePage: TTabSheet
       Caption = 'WelcomePage'
@@ -7938,12 +7938,8 @@ object frmMain: TfrmMain
     object Activites: TTabSheet
       Caption = 'Activites'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ActChurch: TImage
-        Left = 407
+        Left = 455
         Top = 113
         Width = 138
         Height = 105
@@ -11550,7 +11546,7 @@ object frmMain: TfrmMain
         Stretch = True
       end
       object ActSport: TImage
-        Left = 407
+        Left = 455
         Top = 224
         Width = 138
         Height = 105
@@ -15184,7 +15180,7 @@ object frmMain: TfrmMain
         Stretch = True
       end
       object ActCommunicate: TImage
-        Left = 232
+        Left = 264
         Top = 224
         Width = 129
         Height = 105
@@ -19187,7 +19183,7 @@ object frmMain: TfrmMain
         Stretch = True
       end
       object ActHealth: TImage
-        Left = 232
+        Left = 272
         Top = 113
         Width = 129
         Height = 105
@@ -30057,7 +30053,7 @@ object frmMain: TfrmMain
         Stretch = True
       end
       object Panel1: TPanel
-        Left = 208
+        Left = 72
         Top = 32
         Width = 185
         Height = 41
@@ -30076,10 +30072,6 @@ object frmMain: TfrmMain
     object Donations: TTabSheet
       Caption = 'Donations'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label1: TLabel
         Left = 124
         Top = 169
@@ -50917,10 +50909,6 @@ object frmMain: TfrmMain
     object Events: TTabSheet
       Caption = 'Events'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel3: TPanel
         Left = 72
         Top = 32
@@ -50940,7 +50928,7 @@ object frmMain: TfrmMain
       object Memo1: TMemo
         Left = 72
         Top = 104
-        Width = 265
+        Width = 497
         Height = 193
         BevelInner = bvLowered
         BevelKind = bkTile
@@ -50955,8 +50943,8 @@ object frmMain: TfrmMain
         TabOrder = 1
       end
       object BitBtn1: TBitBtn
-        Left = 160
-        Top = 303
+        Left = 280
+        Top = 319
         Width = 75
         Height = 25
         Caption = '&Refresh'
@@ -50965,76 +50953,61 @@ object frmMain: TfrmMain
         ParentDoubleBuffered = False
         TabOrder = 2
       end
-      object Memo2: TMemo
-        Left = 343
-        Top = 104
-        Width = 290
-        Height = 193
-        Lines.Strings = (
-          'For more information contact us:'
-          ''
-          'Twitter                             - @ChildrenPlay'
-          'Facebook                         - '
-          'www.facebook.com/Children.At.Play.NPO'
-          'Takalani Mushungwa cell - +27 845541174'
-          'Email                                - info@CaP.org.za')
-        TabOrder = 3
-      end
     end
   end
   object pnlDrop: TPanel
-    Left = -6
-    Top = 2
+    Left = 0
+    Top = -2
     Width = 666
-    Height = 30
+    Height = 32
     BevelOuter = bvNone
     Color = clTeal
     ParentBackground = False
     TabOrder = 1
     OnMouseDown = pnlDropMouseDown
-  end
-  object btnHelp: TButton
-    Left = 540
-    Top = 3
-    Width = 33
-    Height = 25
-    Caption = '?'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 2
-  end
-  object Button1: TButton
-    Left = 579
-    Top = 3
-    Width = 33
-    Height = 25
-    Caption = '-'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -21
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 3
-  end
-  object Button2: TButton
-    Left = 618
-    Top = 3
-    Width = 33
-    Height = 25
-    Caption = 'X'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 4
-    OnClick = Button2Click
+    object btnHelp: TButton
+      Left = 540
+      Top = 2
+      Width = 33
+      Height = 25
+      Caption = '?'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Button1: TButton
+      Left = 579
+      Top = 3
+      Width = 33
+      Height = 25
+      Caption = '-'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+    end
+    object Button2: TButton
+      Left = 618
+      Top = 3
+      Width = 33
+      Height = 25
+      Caption = 'X'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+      OnClick = Button2Click
+    end
   end
   object Button3: TButton
     Left = 0
@@ -51042,7 +51015,7 @@ object frmMain: TfrmMain
     Width = 17
     Height = 42
     Caption = '<'
-    TabOrder = 5
+    TabOrder = 2
     OnClick = Button3Click
   end
   object Button4: TButton
@@ -51051,7 +51024,7 @@ object frmMain: TfrmMain
     Width = 19
     Height = 42
     Caption = '>'
-    TabOrder = 6
+    TabOrder = 3
     OnClick = Button4Click
   end
   object conCaP: TADOConnection
@@ -51063,20 +51036,20 @@ object frmMain: TfrmMain
     LoginPrompt = False
     Mode = cmReadWrite
     Provider = 'Microsoft.ACE.OLEDB.12.0'
-    Left = 312
-    Top = 176
+    Left = 528
+    Top = 40
   end
   object ADOTbls: TADOTable
     Active = True
     Connection = conCaP
     CursorType = ctStatic
     TableName = 'Login'
-    Left = 392
-    Top = 176
+    Left = 568
+    Top = 40
   end
   object DataSource1: TDataSource
     DataSet = ADOTbls
-    Left = 456
-    Top = 176
+    Left = 608
+    Top = 40
   end
 end

@@ -43,7 +43,6 @@ type
     Panel3: TPanel;
     Memo1: TMemo;
     BitBtn1: TBitBtn;
-    Memo2: TMemo;
     conCaP: TADOConnection;
     ADOTbls: TADOTable;
     DataSource1: TDataSource;
@@ -58,12 +57,20 @@ type
   private
     lblUsername, lblUser, lblPassword: TLabel;
     edtUsername, edtPassword: TEdit;
-    smbUsertype : TComboBox;
+    cmbUsertype : TComboBox;
     btnLogin1, btnRegister1: TSpeedButton;
     procedure LoginUser(Sender: TObject);
     procedure regUser(Sender: Tobject);
+    procedure FreeDynamics;
+    Function ValPassword(pPassword:string):boolean;
+    const
+      arrAdmin : array[1..6]of integer = (0,1,2,3,4,5);
+      arrDonor : array[1..6]of integer = (0,1,2,3,4,5);
+      arrStaff : array[1..6]of integer = (0,1,2,3,4,5);
     var
       bLogin : Boolean;
+      sUserType: string;
+
   public
     { Public declarations }
   end;
@@ -141,8 +148,8 @@ begin
    lblPassword.Parent := WelcomePage;
    edtUsername := TEdit.Create(WelcomePage);
    edtUsername.parent := WelcomePage;
-   smbUsertype := TComboBox.Create(WelcomePage);
-   smbUsertype.Parent := WelcomePage;
+   cmbUsertype := TComboBox.Create(WelcomePage);
+   cmbUsertype.Parent := WelcomePage;
    edtPassword := TEdit.Create(WelcomePage);
    edtPassword.parent := WelcomePage;
    btnRegister1 := TSpeedbutton.Create(WelcomePage);
@@ -175,7 +182,7 @@ begin
     Top:= 100;
     left:= 150;
     end;
-   with smbUsertype do
+   with cmbUsertype do
     begin
       Visible:= true;
       items.Add('Donor');
@@ -223,6 +230,18 @@ begin
   bLogin:= false;
 end;
 
+procedure TfrmMain.FreeDynamics;
+begin
+  lblUsername.Free;
+  lblUser.Free;
+  lblPassword.Free;
+  edtUsername.Free;
+  edtPassword.Free;
+  cmbUsertype.Free;
+  btnRegister1.Free;
+  btnLogin1.Free;
+end;
+
 procedure TfrmMain.LoginUser(Sender: TObject);
 var
  sUser,sPassword,sDBPassword : string;
@@ -231,63 +250,99 @@ begin
   sUser:= edtUsername.Text;
   sPassword:= edtPassword.Text;
   //Checking database to see if user exsists and validate
-  ADOTbls.Filtered:= false;
-  ADOTbls.Filter:= 'UserID = '+QuotedStr(sUser);
-  ADOTbls.Filtered:= true;
-  ADOTbls.Open;
-  sDBPassword:= VarToStr(ADOTbls.FieldByName('Password').Value);
-  if ADOTbls.RecordCount = 0 then //NO user
-     begin
-      ShowMessage('User does not exsist');
-      edtUsername.Clear;
-      edtPassword.Clear;
-      edtUsername.SetFocus;
-     end
-   else //User exsists, checking password
-     if (ADOTbls.RecordCount > 0) AND (NOT (sDBPassword = sPassword)) then
-        begin
-          ShowMessage('Password is incorrect');
-          edtPassword.Clear;
-        end
-       else
-          begin
-           ShowMessage('Login successful!');
-           bLogin:= true;
-          end;
-
+  with ADOTbls do
+  begin Filtered:= false;
+   Filter:= 'UserID = '+QuotedStr(sUser);
+   Filtered:= true;
+   Open;
+   sDBPassword:= VarToStr(ADOTbls.FieldByName('Password').Value);
+   if ADOTbls.RecordCount = 0 then //NO user
+      begin
+       ShowMessage('User does not exsist');
+       edtUsername.Clear;
+       edtPassword.Clear;
+       edtUsername.SetFocus;
+      end
+    else //User exsists, checking password
+      if (ADOTbls.RecordCount > 0) AND (NOT (sDBPassword = sPassword)) then
+         begin
+           ShowMessage('Password is incorrect');
+           edtPassword.Clear;
+         end
+        else
+           begin
+            ShowMessage('Login successful!');
+            bLogin:= true;
+            sUserType:= FieldByName('UserType').Value;
+            FreeDynamics;
+            if NOT (sUserType='Donor') then
+              PageControl1.ActivePageIndex:= 1;
+             end;
+  end;
 end;
 procedure  TfrmMain.regUser(Sender: TObject);
   var
     sUser,sPassword,sUsertype : string;
+    bAccept : boolean;
+    I : integer;
   begin
     sUser := edtUsername.Text;
     sPassword:= edtPassword.Text;
-    //sUsertype:=
+    sUsertype:= cmbUsertype.Items[cmbUsertype.ItemIndex];
     with ADOTbls do
       begin
-        Filter := sUser;
+        Filter := 'UserID = '+QuotedStr(sUser);
         Filtered := true;
         Open;
         if RecordCount > 0 then //If records exist grom the filter
           begin
-           ShowMessage('Username already taken');
+           ShowMessage('Username already taken');//Deny registration
            edtUsername.Clear;
            edtPassword.Clear;
           end
         else
-          Insert;
-          FieldByName('UserID').Value:= sUser;
-          FieldByName('UserType').Value := sUserType;
-          FieldByName('Password').Value:= sPassword;
+          bAccept:= ValPassword(sPassword);//Validate password has a digit
+          if NOT bAccept then
+             begin
+              ShowMessage('Password must be at least 8 characters long');
+              edtPassword.Clear;
+             end
+          else
+             begin
+              Insert;//Allow registration, insert a new record
+               begin
+                 FieldByName('UserID').Value:= sUser;
+                 FieldByName('UserType').Value := sUserType;
+                 FieldByName('Password').Value:= sPassword;
+               end;
+              Post;
+              ShowMessage('Registration successful! Please proceed to login.');
+              FreeDynamics;
+              btnLogin.Visible:= true;
+              btnRegister.Enabled:= false;
+              btnRegister.Visible:= true;
+             end;
+      close;
       end;
 
 
 end;
 
 
+function TfrmMain.ValPassword(pPassword: string): boolean;//Validate registering password
+var
+ bValid:boolean;
+begin
+   bValid:= false;
+     if Length(pPassword) >= 8 then
+         bValid := true;
+   result:= bValid;
+end;
+
 procedure TfrmMain.pnlDropMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+    //A movable object handling (the form in this case)
     ReleaseCapture;
     SendMessage(frmMain.Handle, WM_SYSCOMMAND, $F012, 0);
 end;
